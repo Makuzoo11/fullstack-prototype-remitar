@@ -1,92 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full-Stack App Remitar</title>
-
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
+    <title>Full-Stack App (Mark Go Remitar)</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-
-            <a class="navbar-brand" href="#">Full-Stack App</a>
-
-            <!-- User dropdown (shown when logged in) -->
-            <div class="ms-auto" id="userMenu" style="display:none;">
-                <div class="dropdown">
-
-                    <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">
-                        <span id="usernameDisplay">User</span>
-                    </button>
-
-                    <ul class="dropdown-menu dropdown-menu-end">
-
-                        <li>
-                            <a class="dropdown-item" href="#">Profile</a>
-                        </li>
-
-                        <!-- Admin only -->
-                        <li class="role-admin">
-                            <a class="dropdown-item" href="#">Employees</a>
-                        </li>
-
-                        <li class="role-admin">
-                            <a class="dropdown-item" href="#">Accounts</a>
-                        </li>
-
-                        <li class="role-admin">
-                            <a class="dropdown-item" href="#">Departments</a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" href="#">My Requests</a>
-                        </li>
-
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item text-danger" href="#" id="logoutBtn">Logout</a>
-                        </li>
-
-                    </ul>
-
-                </div>
-            </div>
-
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-brand">Full-Stack App (Mark Go Remitar)</div>
+        <div class="nav-links" id="navLinks">
+            <a href="javascript:void(0);" class="nav-login">Login</a>
+            <a href="javascript:void(0);" class="nav-register">Register</a>
         </div>
     </nav>
 
-    <!-- Page content -->
-    <div class="container mt-4">
-        <h3>My Profile</h3>
-        <div class="card p-3" style="max-width:400px;">
-            <strong id="profileName">Admin User</strong>
-            <div id="profileEmail">admin@example.com</div>
-            <div id="profileRole">Role: Admin</div>
-
-            <button class="btn btn-outline-primary btn-sm mt-2">
-                Edit Profile
-            </button>
+    <!-- Home Section -->
+    <section id="homeSection" class="section active">
+        <div class="container">
+            <h1>Welcome to Full-Stack App</h1>
+            <p class="subtitle">A static prototype before backend integration. Simulates:</p>
+            <ul class="features">
+                <li>Email registration + fake verification</li>
+                <li>Login with JWT-like token simulation</li>
+                <li>Role-based UI (Admin/User)</li>
+                <li>CRUD for Employees, Departments, Requests</li>
+            </ul>
+            <div class="note">
+                <span class="note-icon">⚠️</span>
+                <strong>Note:</strong> All data is stored in <code>localStorage</code>. Refresh to reset.
+            </div>
+            <button class="btn btn-primary" id="getStartedBtn">Get Started →</button>
         </div>
+    </section>
 
-    </div>
+    <!-- Register Section -->
+    <section id="registerSection" class="section">
+        <div class="container form-container">
+            <h2>Register Account</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" id="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" id="lastName" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="regEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-success">Sign Up</button>
+                    <button type="button" class="btn btn-secondary" id="cancelRegister">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </section>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Verify Email Section -->
+    <section id="verifySection" class="section">
+        <div class="container form-container">
+            <h2>Verify Your Email</h2>
+            <div class="alert alert-info">
+                <span class="check-icon">✓</span> A verification link has been sent to <span id="sentEmail"></span>
+            </div>
+            <p>For demo purposes, click below to simulate verification:</p>
+            <button class="btn btn-success" id="simulateVerify">✓ Simulate Email Verification</button>
+            <button class="btn btn-secondary" id="goToLoginFromVerify">Go to Login</button>
+        </div>
+    </section>
+
+    <!-- Login Section -->
+    <section id="loginSection" class="section">
+        <div class="container form-container">
+            <div id="verifiedAlert" class="alert alert-success" style="display: none;">
+                <span class="check-icon">✓</span> Email verified! You may now log in.
+            </div>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="button" class="btn btn-secondary" id="cancelLogin">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section id="dashboardSection" class="section">
+        <div class="container">
+            <h1>Dashboard</h1>
+            <div class="alert alert-success">
+                Welcome, <span id="userName"></span>! You are logged in.
+            </div>
+            <p>This is where your app content would go (CRUD for Employees, Departments, Requests, etc.)</p>
+            <button class="btn btn-danger" id="logoutBtn">Logout</button>
+        </div>
+    </section>
+
     <script src="script.js"></script>
-
 </body>
 </html>
-
